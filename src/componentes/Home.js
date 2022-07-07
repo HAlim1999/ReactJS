@@ -34,6 +34,7 @@ function Home() {
               </div> 
                     
               <div className="home_row">
+              <Productos/>
                
               </div>
               <div className="home_row">

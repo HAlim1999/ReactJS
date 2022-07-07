@@ -40,3 +40,32 @@
     border-radius: 15px;
     font-size: 1.1rem;
 }
+.caja{
+    user-select: none;
+}
+
+.cantidad{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cantidad div{
+    width: 3rem;
+    padding: .4em;
+    border-radius: 5px;
+    font-size: 1rem;
+    border: 1px solid black;
+    text-align: center;
+    align-items: center
+}
+.cantidad button{
+    width: 2rem;
+    justify-content: center;
+    align-items: center;
+    background: #DBF227;
+    border: 1px solid black;
+    color: #111;
+    padding: .4em;
+    border-radius: 5px;
+    font-size: 1rem;
+}
