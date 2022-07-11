@@ -1,11 +1,33 @@
-import React from 'react'
+import React, {useEffect, useState}from 'react'
 import "./Home.css"
 import fondo from "./imgIcon/fondo.webp"
 import Productos from "./Productos"
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import HandshakeIcon from '@mui/icons-material/Handshake';
 
-function Home() {
+function Home(props) {
+  const productos = [{id:1, producto:"Counter Strike",precio:2000},{id:2, producto:"Far Cry",precio:3000},{id:3, producto:"Crysis",precio:3500}];
+
+  const [Items,setItems] = useState([]);
+  console.log(Items);
+
+  useEffect(() => {
+      let promiseItems = new Promise((resolve, reject) => {
+          setTimeout(
+              ()=>{
+                  resolve(productos);
+              },2000);
+      })
+      promiseItems.then(
+          (respuesta)=>{
+              setItems(respuesta);
+              
+          }
+      ).catch (error => console.log(error));  
+
+  },[]);
+
+
   return (
     <div className='home'>
 
@@ -34,7 +56,8 @@ function Home() {
               </div> 
                     
               <div className="home_row">
-              <Productos/>
+
+                 <Productos items={Items}/>
                
               </div>
               <div className="home_row">

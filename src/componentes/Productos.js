@@ -1,14 +1,15 @@
-import React, { useRef } from 'react'
+import React, {Fragment, useRef} from 'react'
 import './Productos.css'
 import KeyboardIcon from '@mui/icons-material/Keyboard';
-import CS from './imgIcon/cs.jpg'
+import CS from './imgIcon/cs.jpg';
+import Itemcount from './Itemcount';
 
-function Productos() {
+function Productos(props) {
   const refCaja = useRef();
   const stock = 5
 
   function restar(){
-    if(Number(refCaja.current.innerHTML)==1){
+    if(Number(refCaja.current.innerHTML) === 1){
       refCaja.current.innerHTML = 1
     }else{
     refCaja.current.innerHTML = (Number(refCaja.current.innerHTML)-1)};
@@ -26,28 +27,32 @@ function Productos() {
 
 
   return (
-    <div className="product">
+    <Fragment> 
+      {props.items.map(
+        cadaItem =>
+        
 
-      <div className="product_info">
-          <p>Counter Strike</p>
-          <p className="product_price">
-              <small>$</small>
-              <strong>2000</strong>
-          </p>
-          <div className="product_rating">
-            <p><KeyboardIcon/></p>
-          </div>
-      </div>
-      
-        <img src={CS}/>
+            <div className="product" key={cadaItem.id}>
 
-        <div className="cantidad">
-            <button onClick={restar}>-</button><div ref={refCaja} className="caja">1</div><button onClick={sumar}>+</button>
-        </div>
+              <div className="product_info">
+                  <p>{cadaItem.producto}</p>
+                  <p className="product_price">
+                      <small>$</small>
+                      <strong>{cadaItem.precio}</strong>
+                  </p>
+                  <div className="product_rating">
+                    <p><KeyboardIcon/></p>
+                  </div>
+              </div>
+              
+                <img src={CS}/>
 
-        <button>Agregar al Carrito</button>
-    
-    </div>
+                <Itemcount/>
+            
+            </div>
+            )}
+    </Fragment>
+
   )
 }
 
