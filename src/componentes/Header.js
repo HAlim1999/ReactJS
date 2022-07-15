@@ -3,6 +3,7 @@ import './Header.css'
 import SearchIcon from '@mui/icons-material/Search';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import logo from "./imgIcon/logo.png"
+import {Link} from 'react-router-dom';
 
 
 function Header() {
@@ -10,7 +11,7 @@ function Header() {
 
 <div className="container">
         <div className="header">
-            <img src={logo} className="header_logo"/> {/*Logo de Amazon*/}
+            <Link to={"/"}><img src={logo} className="header_logo"/></Link>{/*Logo de Amazon*/}
 
             <div className="header_search">
               <input className="header_searchInput" type="text" placeholder='Buscar productos'/>
@@ -49,20 +50,13 @@ function Header() {
                     <ul className="menu">
                         <li><a className="header_optionsLineTwo">Categorías</a>
                               <ul>
-                                    <li>Vehículos</li>
-                                    <li>Inmuebles</li>
-                                    <li>Supermercado</li>
-                                    <li>Tecnología</li>
-                                    <li>Hogar y Muebles</li>
-                                    <li>Electrodomésticos</li>
-                                    <li>Herramientas</li>
-                                    <li>Construcción</li>
-                                    <li>Deportes y Fitnes</li>
-                                    <li>Accesorios para Vehículos</li>
-                                    <li>Moda</li>
-                                    <li>Juegos y Juguetes</li>
-                                    <li>Bebés</li>
-                                    <li>Belleza y Cuidado Personal</li>
+
+                                    <Link to="/categorias/tecnologia"><li>Tecnología</li></Link>
+                                    <Link to="/categorias/video-juegos"><li>Video Juegos</li></Link>
+                                    <Link to="/categorias/muebles"><li>Hogar y Muebles</li></Link>
+                                    <Link to="/categorias/electrodomesticos"><li>Electrodomésticos</li></Link>
+                                    <Link to="/categorias/herramientas"><li>Herramientas</li></Link>
+
                               </ul>
                         </li>
                     </ul>

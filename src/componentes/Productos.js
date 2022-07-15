@@ -1,31 +1,11 @@
-import React, {Fragment, useRef} from 'react'
-import './Productos.css'
-import KeyboardIcon from '@mui/icons-material/Keyboard';
-import CS from './imgIcon/cs.jpg';
+import React, {Fragment} from 'react';
+import './Productos.css';
+import StarIcon from '@mui/icons-material/Star';
 import Itemcount from './Itemcount';
 
 function Productos(props) {
-  const refCaja = useRef();
-  const stock = 5
 
-  function restar(){
-    if(Number(refCaja.current.innerHTML) === 1){
-      refCaja.current.innerHTML = 1
-    }else{
-    refCaja.current.innerHTML = (Number(refCaja.current.innerHTML)-1)};
-  }
-
-  function sumar(){
-    if(Number(refCaja.current.innerHTML)>=stock){
-      alert('Productos fuera de stock');
-  }else{
-    refCaja.current.innerHTML = (Number(refCaja.current.innerHTML)+1)
-
-  }
-
-}
-
-
+ 
   return (
     <Fragment> 
       {props.items.map(
@@ -41,19 +21,27 @@ function Productos(props) {
                       <strong>{cadaItem.precio}</strong>
                   </p>
                   <div className="product_rating">
-                    <p><KeyboardIcon/></p>
+                      {console.log(cadaItem.ranking)}
+                      {Array(cadaItem.ranking).fill().map((_, i)=>(
+                        <p><StarIcon/></p>
+                      ))}               
                   </div>
+
               </div>
               
-                <img src={CS}/>
+                <img src={cadaItem.imagen}/>
+                <Itemcount stock={cadaItem.stock} valorInicial={cadaItem.valorInicial} id={cadaItem.id}/>
+                <div>
+                  <p>Stock disponible: {cadaItem.stock}</p>
+                </div>
 
-                <Itemcount/>
-            
             </div>
+
             )}
     </Fragment>
 
   )
+  
 }
 
 export default Productos

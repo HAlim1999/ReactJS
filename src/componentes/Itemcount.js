@@ -1,9 +1,15 @@
 import React, { Fragment, useRef} from 'react'
 import './Productos.css'
+import {Link} from 'react-router-dom';
+import swal from 'sweetalert';
 
-function Itemcount() {
+
+function Itemcount(props) {
     const refCaja = useRef();
-    const stock = 5
+    const stock = props.stock;
+    const valorInicial = props.valorInicial;
+    const id = props.id;
+    
   
     function restar(){
       if(Number(refCaja.current.innerHTML) === 1){
@@ -14,7 +20,8 @@ function Itemcount() {
   
     function sumar(){
       if(Number(refCaja.current.innerHTML)>=stock){
-        alert('Productos fuera de stock');
+        swal("Stock insuficiente");
+        
     }else{
       refCaja.current.innerHTML = (Number(refCaja.current.innerHTML)+1)
   
@@ -27,12 +34,12 @@ function Itemcount() {
 
       <div className="cantidad">
           <button onClick={restar}>-</button>
-          <div ref={refCaja} className="caja">1</div>
+          <div ref={refCaja} className="caja">{valorInicial}</div>
           <button onClick={sumar}>+</button>
       </div>
 
-      <button>Agregar al Carrito</button>
-  
+      <Link to={`/detail/`+props.id}><button className='boton'>Ver Detalles / Comprar</button></Link>
+      
   </Fragment>
   )
 };
